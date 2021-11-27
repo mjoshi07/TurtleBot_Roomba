@@ -76,3 +76,60 @@ rosrun turtlebot_roomba turtlebot_roomba_node
 ```
 rosservice call /turtlebot_roomba/set_logger_level "{logger: 'rosout', level: 'debug'}"
 ```
+
+## Rosbag details
+* set the launch_gazebo flag to false in the launch command, assuming rosbag file was recorded
+```
+roslaunch turtlebot_roomba turtlebot_roomba.launch launch_gazebo:=false 
+```
+* check the recorded ros bag
+```
+rosbag info rosbag_topics_record_2021-11-27-01-45-21.bag 
+```
+* you should see something like this, check there should be no topic /camera
+```
+path:        rosbag_topics_record_2021-11-27-01-45-21.bag
+version:     2.0
+duration:    30.0s
+start:       Dec 31 1969 19:00:00.17 (0.17)
+end:         Dec 31 1969 19:00:30.14 (30.14)
+size:        48.8 MB
+messages:    126159
+compression: none [64/64 chunks]
+types:       dynamic_reconfigure/Config            [958f16a05573709014982821e6822580]
+             dynamic_reconfigure/ConfigDescription [757ce9d44ba8ddd801bb30bc456f946f]
+             gazebo_msgs/LinkStates                [48c080191eb15c41858319b4d8a609c2]
+             gazebo_msgs/ModelStates               [48c080191eb15c41858319b4d8a609c2]
+             geometry_msgs/Twist                   [9f195f881246fdfa2798d1d3eebca84a]
+             nav_msgs/Odometry                     [cd5e73d190d741a2f92e81eda573aca7]
+             rosgraph_msgs/Clock                   [a9c97c1d230cfc112e270351a944ee47]
+             rosgraph_msgs/Log                     [acffd30cd6b6de30f120938c17c593fb]
+             sensor_msgs/Imu                       [6a62c6daae103f4ff57a132d6f95cec2]
+             sensor_msgs/JointState                [3066dcd76a6cfaef579bd0f34173e9fd]
+             sensor_msgs/LaserScan                 [90c7ef2dc6895d81024acba2ac42f369]
+             tf2_msgs/TFMessage                    [94810edda583a504dfda3829e70d7eec]
+topics:      /clock                           29963 msgs    : rosgraph_msgs/Clock                  
+             /cmd_vel                           149 msgs    : geometry_msgs/Twist                  
+             /gazebo/link_states              29877 msgs    : gazebo_msgs/LinkStates               
+             /gazebo/model_states             29874 msgs    : gazebo_msgs/ModelStates              
+             /gazebo/parameter_descriptions       1 msg     : dynamic_reconfigure/ConfigDescription
+             /gazebo/parameter_updates            1 msg     : dynamic_reconfigure/Config           
+             /imu                             26413 msgs    : sensor_msgs/Imu                      
+             /joint_states                      897 msgs    : sensor_msgs/JointState               
+             /odom                              897 msgs    : nav_msgs/Odometry                    
+             /rosout                           3525 msgs    : rosgraph_msgs/Log                     (4 connections)
+             /rosout_agg                       3516 msgs    : rosgraph_msgs/Log                    
+             /scan                              149 msgs    : sensor_msgs/LaserScan                
+             /tf                                897 msgs    : tf2_msgs/TFMessage
+
+```
+* play the recorded ros bag
+```
+rosbag play rosbag_topics_record_2021-11-27-01-45-21.bag
+```
+* verify this by running the rqt graph
+```
+rqt_graph
+```
+* you should see something like this
+![image](https://github.com/mjoshi07/turtlebot_roomba/blob/Week13_HW/results/rosbag_verified.png)
