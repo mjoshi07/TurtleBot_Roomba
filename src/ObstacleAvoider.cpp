@@ -93,6 +93,7 @@ void ObstacleAvoider::scan_callback(
 
                 // check if scan dist is less than min distance to an obstacle
                 if (scan_dist < min_dist_to_obstacle) {
+                    ROS_INFO_STREAM("OBSTACLE IN MY WAY BUT MAYBE FARAWAY!!!!...");
                     // update min dist to obst to scan dist for next iteration
                     min_dist_to_obstacle = scan_dist;
 
@@ -104,6 +105,7 @@ void ObstacleAvoider::scan_callback(
     }
     // check if min dist to obstacle is less than the collision distance
     if (min_dist_to_obstacle <= collision_distance_) {
+        ROS_WARN_STREAM("OBSTACLE VERY NEAR TO ME!!!! Now Turning...");
         // stop the robot
         vel_cmd.linear.x = 0.0;
 
@@ -122,6 +124,7 @@ void ObstacleAvoider::scan_callback(
         // rotate the robot depending upon the direction of rotation
         vel_cmd.angular.z = rotate_clockwise ? 0.5 : -0.5;
     } else {
+        ROS_INFO_STREAM("NO OBSTACLE IN MY WAY!!!! Moving Forward...");
         // move forward
         vel_cmd.linear.x = 0.3;
         vel_cmd.angular.z = 0.0;
