@@ -1,7 +1,8 @@
 <launch>
 <arg name="record_bag" default="false" />
+<arg name="launch_gazebo" default="true" />
 
-<include file="$(find turtlebot3_gazebo)/launch/turtlebot3_world.launch" />
+<include file="$(find turtlebot3_gazebo)/launch/turtlebot3_world.launch" if="$(arg launch_gazebo)"/>
 
 <node pkg="turtlebot_roomba" name="turtlebot_roomba_node" type="turtlebot_roomba_node" />
 
