@@ -93,7 +93,7 @@ void ObstacleAvoider::scan_callback(
 
                 // check if scan dist is less than min distance to an obstacle
                 if (scan_dist < min_dist_to_obstacle) {
-                    ROS_INFO_STREAM("OBSTACLE IN MY WAY BUT MAYBE FARAWAY!!!!...");
+                    ROS_INFO_STREAM("OBSTACLE IN MY WAY BUT FARAWAY!!!!...");
                     // update min dist to obst to scan dist for next iteration
                     min_dist_to_obstacle = scan_dist;
 
