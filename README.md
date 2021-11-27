@@ -132,4 +132,4 @@ rosbag play rosbag_topics_record_2021-11-27-01-45-21.bag
 rqt_graph
 ```
 * you should see something like this
-![image](https://github.com/mjoshi07/turtlebot_roomba/blob/Week13_HW/results/rosbag_verified.png)
+![image](https://github.com/mjoshi07/turtlebot_roomba/blob/main/results/rosbag_verified.png)
